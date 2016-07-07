@@ -1,0 +1,5 @@
+<ul> 
+	<li ng-repeat="invitedUser in messageUnanswered.getUnanswered()">
+		{{ messageUnanswered.getUserById(invitedUser) | displayNameFilter }}
+	</li>
+</ul>		

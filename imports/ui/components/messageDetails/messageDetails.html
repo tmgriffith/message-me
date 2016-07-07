@@ -1,0 +1,29 @@
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-6">
+			<form>
+				<fieldset class="form-group">
+					<label>Message name: </label>
+					<input type="text" ng-model="messageDetails.message.name" ng-disabled="!messageDetails.isLoggedIn" class="form-control" />
+				</fieldset>
+				<fieldset class="form-group">
+					<label>	Description: </label>
+					<input type="text" ng-model="messageDetails.message.description" ng-disabled="!messageDetails.isLoggedIn" class="form-control" />
+				</fieldset>
+				<div class="checkbox">
+					<label>
+						Public Message? 
+						<input type="checkbox" ng-model="messageDetails.message.public" ng-disabled="!messageDetails.isLoggedIn">
+					</label>
+				</div>	
+				<button ng-click="messageDetails.save()" type="submit" class="btn btn-primary">Save</button>
+			</form>
+		</div>
+		<button ui-sref="messages" type="submit" class="btn btn-primary">Back</button>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+			<message-uninvited message="messageDetails.message" ng-show="messageDetails.canInvite()"></message-uninvited>
+		</div>
+	</div>
+</div>			

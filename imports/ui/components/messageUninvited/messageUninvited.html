@@ -1,0 +1,12 @@
+
+<h4>Users to join conversation:</h4>
+	<ul>		
+		<li ng-repeat="user in messageUninvited.users | uninvitedFilter:messageUninvited.message">
+			
+			<button ng-click="messageUninvited.invite(user)" class="btn btn-primary-outline">Invite</button>
+			{{ user | displayNameFilter }}
+		</li>
+		<div class="alert alert-success" role="alert" ng-if="(messageUninvited.users | uninvitedFilter:messageUninvited.message).length <= 0">
+		Everyone is invited
+		</div>
+	</ul>	

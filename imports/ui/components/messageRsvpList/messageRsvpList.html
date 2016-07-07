@@ -1,0 +1,23 @@
+<div class="rsvp-sum">
+	<div class="rsvp-amount">
+		<div class="amount">
+			{{ (messageRsvpList.rsvps | filter:{rsvp:'yes'}).length || 0 }}
+		</div>
+		<div class="rsvp-title">
+			YES
+		</div>
+	</div>
+	<div class="rsvp-amount">
+		<div class="amount">
+			{{ (messageRsvpList.rsvps | filter:{rsvp:'no'}).length || 0 }}
+		</div>
+		<div class="rsvp-title">
+			NO
+		</div>
+	</div>			
+</div>
+
+
+
+
+

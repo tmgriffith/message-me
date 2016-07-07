@@ -1,0 +1,66 @@
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<message-add ng-show="messagesList.isLoggedIn"></message-add>
+
+			<div class="alert alert-waring" role="alert" ng-hide="messagesList.isLoggedIn">
+				<strong>Warning</strong>
+				Log in to write a message
+			</div>
+		</div>
+	</div>			
+	<div class="row">
+		<div class="col-md-12">
+			<h2>Message Threads</h2>
+			<form class="form-inline">
+				<div class="form-group">
+					<input type="search" ng-model="messagesList.searchText" placeholder="Search" class="form-control"/>
+				</div>	
+		
+				<messages-sort class="form-group" on-change="messagesList.sortChanged(sort)" property="name" order="1"></messages-sort>	
+			</form>	
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+			<ul class="messages">
+				<li dir-paginate="message in messagesList.messages | itemsPerPage: messagesList.perPage" total-items="messagesList.messagesCount">
+					<div class="row">
+						<div class="col-sm-8">
+							<h3 class="message-name">
+								<a ui-sref="messageDetails({ messageId: message._id })">
+									{{message.name}}
+								</a>
+							</h3>
+							<p class="message-description">
+								{{message.description}}
+							</p>
+						</div>
+						<div class="col-sm-4">
+							<message-remove message="message" ng-show="messagesList.isOwner(message)"></message-remove>
+						</div>
+					</div>	
+					<div class="row">
+						<div class="col-md-12">
+							<message-rsvp message="message" ng-show="messagesList.isLoggedIn"></message-rsvp>
+							<div class-="alert alert-warning" role="alert" ng-hide="messagesList.isLoggedIn">
+								<strong>Warning!</strong>
+									<i>Sign in to Join this Conversation</i>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-4">
+							<message-creator message="message"></message-creator>
+						</div>
+						<div class="col-md-8">
+							<message-rsvp-list rsvps="message.rsvps"></message-rsvp-list>
+						</div>
+					</div>
+				</li>
+			</ul>
+
+			<dir-pagination-controls on-page-change="messagesList.pageChanged(newPageNumber)"></dir-pagination-controls>
+		</div>
+	</div>
+</div>			
